@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_3_3_1</title>
+</head>
+<body>
+<div style="display: flex; flex-direction: column; gap: 15px">
+    <a href="task_3_1_1_SNA.html">Задание 1.1</a>
+    <a href="task_3_1_2_SNA.html">Задание 1.2</a>
+    <a href="task_3_2_1_SNA.html">Задание 2.1</a>
+    <a href="task_3_2_2_SNA.html">Задание 2.2</a>
+    <a href="task_3_3_1_SNA.html">Задание 3.1</a>
+    <a href="task_3_3_2_SNA.html">Задание 3.2</a>
+    <a href="task_3_4_1_SNA.html">Задание 4.1</a>
+</div>
+    <br>
+    <br>
+    <form>
+        <input type="text" id="day1" name="text1" placeholder="Введите день">
+        <select id="month1" name="dropdown"></select>
+        <input type="text" id="year1" name="text2" placeholder="Введите год">
+        <br>
+        <br>
+        <input type="text" id="day2" name="text1" placeholder="Введите кол-во дней">
+        <br>
+        <br>
+        <input type="button" value="Отправить" onclick="processForm()">
+    </form>
+    <br>
+    <input type="text" id="answer">
+    <script>
+
+        const languagesArray = [
+        { name: "Английский", iso639_1: "en", iso639_2: "eng", iso639_3: "eng", iso639_numeric: "анг" },
+        { name: "Китайский", iso639_1: "zh", iso639_2: "chi", iso639_3: "zho", iso639_numeric: "кит" },
+        { name: "Хинди", iso639_1: "hi", iso639_2: "hin", iso639_3: "hin", iso639_numeric: "хин" },
+        { name: "Испанский", iso639_1: "es", iso639_2: "esl", iso639_3: "spa", iso639_numeric: "исп" },
+        { name: "Арабский", iso639_1: "ar", iso639_2: "ara", iso639_3: "ara", iso639_numeric: "ара" },
+        { name: "Французский", iso639_1: "fr", iso639_2: "fra", iso639_3: "fra", iso639_numeric: "фра" },
+        { name: "Бенгальский", iso639_1: "bn", iso639_2: "ben", iso639_3: "ben", iso639_numeric: "бен" },
+        { name: "Русский", iso639_1: "ru", iso639_2: "rus", iso639_3: "rus", iso639_numeric: "рус" },
+        { name: "Португальский", iso639_1: "pt", iso639_2: "por", iso639_3: "por", iso639_numeric: "пор" },
+        { name: "Суахили", iso639_1: "sw", iso639_2: "swa", iso639_3: "swa", iso639_numeric: "суа" },
+        { name: "Индонезийский", iso639_1: "id", iso639_2: "ind", iso639_3: "ind", iso639_numeric: "инд" },
+        { name: "Урду", iso639_1: "ur", iso639_2: "urd", iso639_3: "urd", iso639_numeric: "урд" },
+        { name: "Японский", iso639_1: "ja", iso639_2: "jpn", iso639_3: "jpn", iso639_numeric: "япо" },
+        { name: "Немецкий", iso639_1: "de", iso639_2: "ger", iso639_3: "deu", iso639_numeric: "нем" },
+        { name: "Вьетнамский", iso639_1: "vi", iso639_2: "vie", iso639_3: "vie", iso639_numeric: "вье" },
+        { name: "Итальянский", iso639_1: "it", iso639_2: "ita", iso639_3: "ita", iso639_numeric: "ита" },
+        { name: "Турецкий", iso639_1: "tr", iso639_2: "tur", iso639_3: "tur", iso639_numeric: "тур" },
+        { name: "Корейский", iso639_1: "ko", iso639_2: "kor", iso639_3: "kor", iso639_numeric: "коо" },
+        { name: "Польский", iso639_1: "pl", iso639_2: "pol", iso639_3: "pol", iso639_numeric: "пол" },
+        { name: "Украинский", iso639_1: "uk", iso639_2: "ukr", iso639_3: "ukr", iso639_numeric: "укр" },
+        { name: "Азербайджанский", iso639_1: "az", iso639_2: "aze", iso639_3: "aze", iso639_numeric: "азе" },
+        { name: "Белорусский", iso639_1: "be", iso639_2: "bel", iso639_3: "bel", iso639_numeric: "бел" }
+    ];
+
+        const languageCodeRegex = /^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{1,8})?$/;
+
+        let languageCode = prompt('Введите код языка: ', 'ru');
+
+        if (languageCode === null) {
+            // Если нажата кнопка "Отмена", устанавливаем язык по умолчанию на "ru"
+            alert('Вы ничего не ввели. Установлен русский язык по умолчанию.');
+            languageCode = 'ru';
+        } else {
+            // Преобразование в нижний регистр и проверка корректности кода языка
+            languageCode = languageCode.toLowerCase();
+            const languageExists = languagesArray.some(language => {
+            return (
+                language.iso639_1.toLowerCase() === languageCode ||
+                language.iso639_2.toLowerCase() === languageCode ||
+                language.iso639_3.toLowerCase() === languageCode
+            );
+            });
+
+            if (languageExists) {
+            console.log(`Язык с кодом ${languageCode} найден в массиве.`);
+            } else {
+            console.log(`Язык с кодом ${languageCode} не найден в массиве.`);
+            }
+                if (!languageCodeRegex.test(languageCode) || !languageExists) {
+                    alert('Некорректный код языка. Установлен русский язык по умолчанию.');
+                    languageCode = 'ru';
+                }
+            }
+
+
+
+        let months = [];
+        for (let i = 0; i < 12; i++) {
+            const currentMonth = new Date(2023, i);
+            months[i] = currentMonth.toLocaleDateString(languageCode, { month: 'long' });
+        }
+
+        // Заполнение выпадающих списков месяцев
+        const monthSelects = document.querySelectorAll('select[name="dropdown"]');
+        monthSelects.forEach(select => {
+            months.forEach((month, index) => {
+                const option = document.createElement('option');
+                option.value = index + 1;
+                option.textContent = month;
+                select.appendChild(option);
+            });
+        });
+
+
+
+        function validateInput(value, min, max) {
+            return !isNaN(value) && parseInt(value) >= min && parseInt(value) <= max;
+        }
+
+        function processForm() {
+            // Получение значений из полей
+            let day1Value = document.getElementById('day1').value;
+            let month1Value = parseInt(document.getElementById('month1').value);
+            let year1Value = document.getElementById('year1').value;
+            let addDays = Number(document.getElementById('day2').value);
+            if(addDays % 1 !== 0){
+                alert('Введено некорректное число');
+                return;
+            }
+
+            if (!validateInput(day1Value, 1, 31) || !validateInput(year1Value, 1, 9999)) {
+                alert('Введена некорректная дата');
+                return;
+            }
+
+
+
+            let date1 = new Date(year1Value, month1Value - 1, day1Value);
+            if (
+                isNaN(date1.getFullYear()) ||
+                date1.getMonth() + 1 !== month1Value ||
+                date1.getDate() !== parseInt(day1Value)
+            ) {
+                alert('Введена некорректная дата');
+                return;
+            }
+            let nextDate = date1;
+            nextDate.setDate(date1.getDate() + Number(addDays));
+
+
+            document.getElementById('answer').value = nextDate.getDate() + ' ' +
+                nextDate.toLocaleDateString(language, { month: 'long' }) + ' ' +
+                nextDate.getFullYear();
+
+        }
+    </script>
+</body>
+</html>

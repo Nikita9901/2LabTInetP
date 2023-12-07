@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_3_2_2</title>
+</head>
+<body>
+<div style="display: flex; flex-direction: column; gap: 15px">
+    <a href="task_3_1_1_SNA.html">Задание 1.1</a>
+    <a href="task_3_1_2_SNA.html">Задание 1.2</a>
+    <a href="task_3_2_1_SNA.html">Задание 2.1</a>
+    <a href="task_3_2_2_SNA.html">Задание 2.2</a>
+    <a href="task_3_3_1_SNA.html">Задание 3.1</a>
+    <a href="task_3_3_2_SNA.html">Задание 3.2</a>
+    <a href="task_3_4_1_SNA.html">Задание 4.1</a>
+</div>
+    <script>
+        
+            // Запрос имени пользователя
+            let userName = prompt('Введите ваше имя:', 'Никита');
+            if(!userName) {
+                alert('Вы ничего не ввели');
+                // return;
+            }else{
+                // Запрос возраста пользователя
+                let userAge = prompt('Введите ваш возраст:', '20');
+                if(!userAge) {
+                    alert('Вы ничего не ввели');
+                    // return;
+                }else{
+                    if(userAge % 1 !== 0 || userAge < 0 || userAge > 100){
+                        alert('Введите корректное число')
+                    }else{
+                        // Приветственное сообщение
+                        alert('Привет, ' + userName + '! Ваш возраст: ' + userAge + ' лет.');
+
+                        // Запрос дополнительной информации
+                        let additionalInfo = confirm('Хотите предоставить дополнительную информацию?');
+
+                        // Если пользователь согласен, запрос дополнительной информации
+                        if (additionalInfo) {
+                            let userCity = prompt('Введите ваш город проживания:');
+                            if(userCity){
+                                alert('Спасибо за дополнительную информацию. Вы живете в городе ' + userCity + '.');
+                            }else{
+                                alert('Вы ничего не ввели'); 
+                            }
+                        } else {
+                            alert('Спасибо за предоставленную информацию.');
+                        }
+                    }
+
+                }
+                
+            }
+            
+
+    </script>
+
+</body>
+</html>

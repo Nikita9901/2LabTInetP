@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_3_1_2</title>
+</head>
+<body>
+<div style="display: flex; flex-direction: column; gap: 15px">
+    <a href="task_3_1_1_SNA.html">Задание 1.1</a>
+    <a href="task_3_1_2_SNA.html">Задание 1.2</a>
+    <a href="task_3_2_1_SNA.html">Задание 2.1</a>
+    <a href="task_3_2_2_SNA.html">Задание 2.2</a>
+    <a href="task_3_3_1_SNA.html">Задание 3.1</a>
+    <a href="task_3_3_2_SNA.html">Задание 3.2</a>
+    <a href="task_3_4_1_SNA.html">Задание 4.1</a>
+</div>
+    <script>
+        alert('Привет, Никита!');
+
+        [
+            'Вы поняли как выглядит confirm?',
+            'А теперь?',
+            'Может сейчас?',
+            'Ну попробуй ещё.',
+            'Внимательнее присмотрись!',
+            'Подсказка: вы на него смотрите',
+            'Больше подсказок нет',
+            'Ну последний раз',
+            'Жаль, больше не буду('
+        ]
+            .some(text => {
+            if (confirm(text)) {
+                alert('Отлично');
+                return true;
+            }
+        })
+
+        let userInput = prompt('Введите что-нибудь:', 'По умолчанию');
+        if (userInput !== null) {
+            alert('Вы ввели: ' + userInput);
+        } else {
+            alert('Вы нажали "Отмена" или закрыли окно ввода.');
+        }
+    </script>
+</body>
+</html>
