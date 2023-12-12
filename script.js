@@ -41,21 +41,23 @@ function appendValue(num) {
         if (stack.peek() === '++('){
             memory.innerHTML = memory.innerHTML.replace(stack.pop(), '');
             display.value = stack.peek() + (Number(currentValue) + 1).toString();
+            previousNum = (Number(currentValue) + 1).toString();
+            console.log(display.value, previousNum)
         }
         else if (stack.peek() === '--('){
             memory.innerHTML = memory.innerHTML.replace(stack.pop(), '');
             display.value = stack.peek() + (Number(currentValue) - 1).toString();
+            previousNum = (Number(currentValue) - 1).toString();
+            console.log(display.value, previousNum)
         }
         else{
             display.value = stack.peek() + currentValue;
         }
-        previousNum = (Number(currentValue) + 1).toString();
         currentValue = display.value;
         memory.innerHTML = memory.innerHTML.replace(stack.pop(), '');
-        memory.innerHTML = memory.innerHTML.replace(/\($/, '');
     }
     else if (num === "++") {
-        if (!isNaN(Number(previousNum))){
+        if (previousNum !== ''){
             let incrementedNum = (Number(previousNum) + 1).toString();
             let regExp = new RegExp(previousNum + '$');
 
@@ -71,14 +73,14 @@ function appendValue(num) {
         }
     }
     else if (num === "--"){
-        if (!isNaN(Number(previousNum))){
+        if (previousNum !== ''){
             const temp = previousNum;
             previousNum = (Number(previousNum) - 1).toString()
             let tempIndex = currentValue.lastIndexOf(temp);
+            // console.log(currentValue.slice(0, tempIndex), previousNum, currentValue.slice(tempIndex + temp.length))
             if (tempIndex !== -1) {
                 currentValue = currentValue.slice(0, tempIndex) + previousNum + currentValue.slice(tempIndex + temp.length);
             }
-            console.log(currentValue)
             display.value = currentValue;
         }
         else{
@@ -101,7 +103,6 @@ function calculate() {
     try {
         let expression = currentValue
         expression = expression.replace('--', '+')
-        console.log(expression)
 
         if (!expression) {
             alert('Вы ничего не ввели');
