@@ -92,7 +92,7 @@
         let months = [];
         for (let i = 0; i < 12; i++) {
             const currentMonth = new Date(2023, i);
-            months[i] = currentMonth.toLocaleDateString(languageCode, { month: 'long' });
+            months.push(currentMonth.toLocaleDateString(languageCode, { month: 'long' }));
         }
 
         // Заполнение выпадающих списков месяцев
