@@ -95,6 +95,7 @@ function appendValue(num) {
         currentValue += num;
         display.value = currentValue;
         if (!isNaN(Number(num))) previousNum = previousNum + num;
+        else if (previousNum === '' && num === '-') previousNum = '-'
         else previousNum = ''
     }
 }
